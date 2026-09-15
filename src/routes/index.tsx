@@ -25,7 +25,6 @@ export const Route = createFileRoute("/")({
           "@type": "LocalBusiness",
           name: "Estudio Kusz",
           description: descripcion,
-          image: "https://cdn.gpteng.co/blank-app-v1.svg",
           priceRange: "$$",
           areaServed: "Chile",
         }),

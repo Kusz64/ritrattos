@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as EncargarRouteImport } from './routes/encargar'
 import { Route as LegalRouteImport } from './routes/legal'
 import { Route as PortafolioRouteImport } from './routes/portafolio'
 import { Route as ProcesoRouteImport } from './routes/proceso'
@@ -17,6 +18,11 @@ import { Route as ProcesoRouteImport } from './routes/proceso'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EncargarRoute = EncargarRouteImport.update({
+  id: '/encargar',
+  path: '/encargar',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LegalRoute = LegalRouteImport.update({
@@ -37,12 +43,14 @@ const ProcesoRoute = ProcesoRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/encargar': typeof EncargarRoute
   '/legal': typeof LegalRoute
   '/portafolio': typeof PortafolioRoute
   '/proceso': typeof ProcesoRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/encargar': typeof EncargarRoute
   '/legal': typeof LegalRoute
   '/portafolio': typeof PortafolioRoute
   '/proceso': typeof ProcesoRoute
@@ -50,20 +58,22 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/encargar': typeof EncargarRoute
   '/legal': typeof LegalRoute
   '/portafolio': typeof PortafolioRoute
   '/proceso': typeof ProcesoRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/legal' | '/portafolio' | '/proceso'
+  fullPaths: '/' | '/encargar' | '/legal' | '/portafolio' | '/proceso'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/legal' | '/portafolio' | '/proceso'
-  id: '__root__' | '/' | '/legal' | '/portafolio' | '/proceso'
+  to: '/' | '/encargar' | '/legal' | '/portafolio' | '/proceso'
+  id: '__root__' | '/' | '/encargar' | '/legal' | '/portafolio' | '/proceso'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  EncargarRoute: typeof EncargarRoute
   LegalRoute: typeof LegalRoute
   PortafolioRoute: typeof PortafolioRoute
   ProcesoRoute: typeof ProcesoRoute
@@ -76,6 +86,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/encargar': {
+      id: '/encargar'
+      path: '/encargar'
+      fullPath: '/encargar'
+      preLoaderRoute: typeof EncargarRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/legal': {
@@ -104,6 +121,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  EncargarRoute: EncargarRoute,
   LegalRoute: LegalRoute,
   PortafolioRoute: PortafolioRoute,
   ProcesoRoute: ProcesoRoute,
