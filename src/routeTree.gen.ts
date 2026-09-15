@@ -14,6 +14,7 @@ import { Route as EncargarRouteImport } from './routes/encargar'
 import { Route as LegalRouteImport } from './routes/legal'
 import { Route as PortafolioRouteImport } from './routes/portafolio'
 import { Route as ProcesoRouteImport } from './routes/proceso'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -40,6 +41,11 @@ const ProcesoRoute = ProcesoRouteImport.update({
   path: '/proceso',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -47,6 +53,7 @@ export interface FileRoutesByFullPath {
   '/legal': typeof LegalRoute
   '/portafolio': typeof PortafolioRoute
   '/proceso': typeof ProcesoRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -54,6 +61,7 @@ export interface FileRoutesByTo {
   '/legal': typeof LegalRoute
   '/portafolio': typeof PortafolioRoute
   '/proceso': typeof ProcesoRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -62,13 +70,22 @@ export interface FileRoutesById {
   '/legal': typeof LegalRoute
   '/portafolio': typeof PortafolioRoute
   '/proceso': typeof ProcesoRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/encargar' | '/legal' | '/portafolio' | '/proceso'
+  fullPaths:
+    '/' | '/encargar' | '/legal' | '/portafolio' | '/proceso' | '/sitemap.xml'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/encargar' | '/legal' | '/portafolio' | '/proceso'
-  id: '__root__' | '/' | '/encargar' | '/legal' | '/portafolio' | '/proceso'
+  to: '/' | '/encargar' | '/legal' | '/portafolio' | '/proceso' | '/sitemap.xml'
+  id:
+    | '__root__'
+    | '/'
+    | '/encargar'
+    | '/legal'
+    | '/portafolio'
+    | '/proceso'
+    | '/sitemap.xml'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -77,6 +94,7 @@ export interface RootRouteChildren {
   LegalRoute: typeof LegalRoute
   PortafolioRoute: typeof PortafolioRoute
   ProcesoRoute: typeof ProcesoRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -116,6 +134,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProcesoRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -125,6 +150,7 @@ const rootRouteChildren: RootRouteChildren = {
   LegalRoute: LegalRoute,
   PortafolioRoute: PortafolioRoute,
   ProcesoRoute: ProcesoRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
