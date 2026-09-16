@@ -7,7 +7,7 @@ import { SiteLayout } from "@/components/SiteLayout";
 import { supabase } from "@/integrations/supabase/client";
 import { crearPedido, crearUrlDeSubida } from "@/lib/orders.functions";
 
-const titulo = "Encargar un retrato personalizado | Estudio Kusz";
+const titulo = "Encargar un retrato personalizado | Ritrattos";
 const descripcion =
   "Encarga tu retrato al óleo, digital o certificado. Sube tus fotos, elige estilo y tamaño y recibe la confirmación por correo.";
 
@@ -16,18 +16,27 @@ const MAX_MB = 20;
 const MAX_FOTOS = 8;
 
 const estilos = [
-  { valor: "oleo", etiqueta: "Óleo sobre lienzo" },
-  { valor: "digital", etiqueta: "Pintura digital" },
-  { valor: "certificado", etiqueta: "Certificado o diploma" },
+  { valor: "oleo", etiqueta: "Óleo sobre lienzo (bastidor de madera)" },
+  { valor: "acuarela", etiqueta: "Acuarela sobre papel Canson 300g (marco de regalo)" },
+  { valor: "digital", etiqueta: "Pintura digital de alta resolución" },
+  { valor: "certificado", etiqueta: "Certificado o diploma caligráfico" },
 ] as const;
 
-const tamanos = ["30 × 30 cm", "40 × 40 cm", "50 × 50 cm", "70 × 70 cm", "A consultar"];
+const tamanos = [
+  "15 × 20 cm ($70.000 Acuarela)",
+  "20 × 20 cm ($75.000 Óleo)",
+  "20 × 30 cm ($90.000 Acuarela / $95.000 Óleo)",
+  "30 × 40 cm ($120.000 Acuarela / $130.000 Óleo) — Más elegido",
+  "40 × 50 cm ($160.000 Acuarela / $170.000 Óleo)",
+  "50 × 60 cm ($200.000 Óleo)",
+  "Medida especial personalizada (A consultar)",
+];
 
 const formSchema = z.object({
   fullName: z.string().trim().min(2, "Ingresa tu nombre").max(120),
   email: z.string().trim().email("Revisa tu correo").max(255),
   phone: z.string().trim().max(40),
-  style: z.enum(["oleo", "digital", "certificado"]),
+  style: z.enum(["oleo", "acuarela", "digital", "certificado"]),
   size: z.string().trim().min(1),
   message: z.string().trim().max(1500),
 });
@@ -113,10 +122,12 @@ function Encargar() {
         const { path, token } = await pedirUrl({
           data: { filename: file.name, contentType: file.type, size: file.size },
         });
-        const { error } = await supabase.storage
-          .from("order-photos")
-          .uploadToSignedUrl(path, token, file);
-        if (error) throw new Error(`No se pudo subir ${file.name}`);
+        if (token !== "local-dev-token") {
+          const { error } = await supabase.storage
+            .from("order-photos")
+            .uploadToSignedUrl(path, token, file);
+          if (error) throw new Error(`No se pudo subir ${file.name}`);
+        }
         paths.push(path);
       }
 

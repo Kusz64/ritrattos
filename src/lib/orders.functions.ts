@@ -19,6 +19,11 @@ export const crearUrlDeSubida = createServerFn({ method: "POST" })
     const ext = (data.filename.split(".").pop() ?? "jpg").toLowerCase().replace(/[^a-z0-9]/g, "");
     const path = `${new Date().toISOString().slice(0, 10)}/${crypto.randomUUID()}.${ext || "jpg"}`;
 
+    if (!process.env["SUPABASE_SERVICE_ROLE_KEY"]) {
+      console.log("[LOCAL DEV] Subida de foto simulada:", path);
+      return { path, token: "local-dev-token" };
+    }
+
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
     const { data: signed, error } = await supabaseAdmin.storage
       .from("order-photos")
@@ -32,7 +37,7 @@ const pedidoSchema = z.object({
   fullName: z.string().trim().min(2, "Ingresa tu nombre").max(120),
   email: z.string().trim().email("Correo no válido").max(255),
   phone: z.string().trim().max(40).optional().or(z.literal("")),
-  style: z.enum(["oleo", "digital", "certificado"]),
+  style: z.enum(["oleo", "acuarela", "digital", "certificado"]),
   size: z.string().trim().min(1).max(60),
   message: z.string().trim().max(1500).optional().or(z.literal("")),
   photoPaths: z.array(z.string().trim().min(1).max(300)).min(1, "Sube al menos una foto").max(8),
@@ -42,6 +47,11 @@ const pedidoSchema = z.object({
 export const crearPedido = createServerFn({ method: "POST" })
   .inputValidator((data: unknown) => pedidoSchema.parse(data))
   .handler(async ({ data }) => {
+    if (!process.env["SUPABASE_SERVICE_ROLE_KEY"]) {
+      console.log("[LOCAL DEV] Pedido recibido en desarrollo local:", data);
+      return { id: `local-dev-${Date.now()}` };
+    }
+
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
 
     const { data: row, error } = await supabaseAdmin

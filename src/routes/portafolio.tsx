@@ -4,7 +4,7 @@ import { SiteLayout } from "@/components/SiteLayout";
 import { AntesDespues } from "@/components/AntesDespues";
 import { categorias, piezas } from "@/data/portfolio";
 
-const titulo = "Portafolio de retratos al óleo y digitales | Estudio Kusz";
+const titulo = "Portafolio de retratos al óleo y digitales | Ritrattos";
 const descripcion =
   "Galería de retratos al óleo personalizados de mascotas y personas, pinturas digitales y certificados. Compara la foto original con la obra terminada.";
 

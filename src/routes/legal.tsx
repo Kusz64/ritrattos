@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/SiteLayout";
 
-const titulo = "Términos y Política de Privacidad | Estudio Kusz";
+const titulo = "Términos y Política de Privacidad | Ritrattos";
 const descripcion =
   "Cómo tratamos las fotos que nos envías, plazos de entrega, política de reembolso y formas de coordinar el pago de tu retrato personalizado.";
 
