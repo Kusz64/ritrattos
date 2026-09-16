@@ -37,23 +37,149 @@ export const Route = createFileRoute("/")({
   component: Inicio,
 });
 
-const preciosOleo = [
-  { medida: "20 × 20 cm", precio: "$75.000 CLP", detalle: "Formato cuadrado, ideal para 1 rostro en primer plano." },
-  { medida: "20 × 30 cm", precio: "$95.000 CLP", detalle: "Proporción clásica vertical, perfecto para repisas y dormitorios." },
-  { medida: "30 × 40 cm", precio: "$130.000 CLP", detalle: "El formato más pedido. Gran nivel de detalle en mirada y pelaje.", popular: true },
-  { medida: "40 × 50 cm", precio: "$170.000 CLP", detalle: "Excelente para 1 o 2 figuras con presencia destacada." },
-  { medida: "50 × 60 cm", precio: "$200.000 CLP", detalle: "Gran formato de impacto para salones y livings." },
+type CategoriaTarifa = "oleo" | "acuarela" | "digital" | "certificados";
+
+interface ItemPrecio {
+  nombre: string;
+  subtitulo?: string;
+  miles: string;
+  detalle: string;
+  caracteristicas?: string[];
+  popular?: boolean;
+}
+
+const preciosOleo: ItemPrecio[] = [
+  {
+    nombre: "50 × 60 cm",
+    subtitulo: "Gran Formato (Ancla)",
+    miles: "200",
+    detalle: "Presencia escénica de gran impacto visual. Óleo con ricos empastes matéricos para salones y livings.",
+    caracteristicas: ["Lienzo de lino o algodón montado", "Bastidor reforzado de pino macizo", "Embalaje rígido de alta seguridad"],
+  },
+  {
+    nombre: "40 × 50 cm",
+    subtitulo: "Formato Mediano Amplio",
+    miles: "175",
+    detalle: "Excelente para composiciones de 1 o 2 figuras con un altísimo grado de detalle en piel y pelaje.",
+    caracteristicas: ["Bastidor de madera incluido", "Revisiones de boceto previas", "Barniz de protección final"],
+  },
+  {
+    nombre: "30 × 40 cm",
+    subtitulo: "Formato Clásico",
+    miles: "130",
+    detalle: "El tamaño más pedido. Equilibrio perfecto para retratos individuales de personas y mascotas.",
+    caracteristicas: ["Máximo detalle en mirada y expresión", "Boceto previo con revisiones", "Listo para colgar"],
+    popular: true,
+  },
+  {
+    nombre: "20 × 30 cm",
+    subtitulo: "Formato Estándar",
+    miles: "95",
+    detalle: "Proporción vertical armónica, ideal para repisas, escritorios y dormitorios.",
+    caracteristicas: ["Montado en bastidor", "Textura al óleo sobre lienzo", "Listo para colgar"],
+  },
+  {
+    nombre: "20 × 20 cm",
+    subtitulo: "Formato Cuadrado",
+    miles: "75",
+    detalle: "Ideal para 1 rostro en primer plano o retrato íntimo de mascota.",
+    caracteristicas: ["Lienzo en bastidor", "Boceto de aprobación", "Listo para colgar"],
+  },
 ];
 
-const preciosAcuarela = [
-  { medida: "15 × 20 cm", precio: "$70.000 CLP", detalle: "Delicado y luminoso, ideal para regalos íntimos." },
-  { medida: "20 × 30 cm", precio: "$90.000 CLP", detalle: "Tamaño estándar perfecto para escritorios o galerías murales." },
-  { medida: "30 × 40 cm", precio: "$120.000 CLP", detalle: "La medida favorita en acuarela con gran luminosidad.", popular: true },
-  { medida: "40 × 50 cm", precio: "$160.000 CLP", detalle: "Formato amplio para retratos llenos de luz y soltura." },
+const preciosAcuarela: ItemPrecio[] = [
+  {
+    nombre: "40 × 50 cm",
+    subtitulo: "Gran Formato",
+    miles: "160",
+    detalle: "Formato amplio para retratos llenos de luz, soltura y transparencias sutiles.",
+    caracteristicas: ["Papel Canson 300 g", "Marco de regalo incluido 🎁", "Pigmentos profesionales"],
+  },
+  {
+    nombre: "30 × 40 cm",
+    subtitulo: "Formato Favorito",
+    miles: "120",
+    detalle: "La medida preferida en acuarela. Gran luminosidad y delicadeza artística.",
+    caracteristicas: ["Marco de regalo incluido 🎁", "Boceto previo de aprobación", "Papel Canson 300 g"],
+    popular: true,
+  },
+  {
+    nombre: "20 × 30 cm",
+    subtitulo: "Formato Estándar",
+    miles: "90",
+    detalle: "Tamaño equilibrado perfecto para escritorios o galerías murales.",
+    caracteristicas: ["Marco de regalo incluido 🎁", "Papel grueso 300 g", "Listo para lucir"],
+  },
+  {
+    nombre: "15 × 20 cm",
+    subtitulo: "Formato Íntimo",
+    miles: "70",
+    detalle: "Delicado y luminoso, ideal para regalos especiales y rincones acogedores.",
+    caracteristicas: ["Marco de regalo incluido 🎁", "Papel de bellas artes", "Detalle delicado"],
+  },
 ];
+
+const preciosDigital: ItemPrecio[] = [
+  {
+    nombre: "Pack Familiar / Comercial Premium",
+    subtitulo: "Máxima Resolución (Ancla)",
+    miles: "110",
+    detalle: "Hasta 4 rostros / Mascotas integradas + Archivo Máxima Resolución (Apto para gigantografías) + Paleta de colores comercial.",
+    caracteristicas: ["Hasta 4 figuras integradas", "Apto para gigantografías / imprenta", "Paleta de colores comercial"],
+  },
+  {
+    nombre: "Retrato de Pareja / Dúo",
+    subtitulo: "Mascota + Dueño o Pareja",
+    miles: "75",
+    detalle: "2 figuras detalladas + Fondos personalizados + Formato optimizado para redes y fondo de pantalla.",
+    caracteristicas: ["2 figuras detalladas", "Fondos personalizados", "Optimizado para redes y wallpaper"],
+    popular: true,
+  },
+  {
+    nombre: "Retrato Individual",
+    subtitulo: "Primer Plano / Avatar",
+    miles: "45",
+    detalle: "1 rostro estilo avatar o primer plano conceptual con acabado artístico digital.",
+    caracteristicas: ["1 figura / rostro", "Estilo conceptual / avatar", "Entrega digital alta fidelidad"],
+  },
+];
+
+const preciosCertificados: ItemPrecio[] = [
+  {
+    nombre: "Pack Institucional / Corporativo",
+    subtitulo: "Diseño Completo (Ancla)",
+    miles: "90",
+    detalle: "Diseño a medida con heráldica/logotipos vectoriales + Formato editable + Plantilla de impresión en alta fidelidad + Firma digital integrada.",
+    caracteristicas: ["Heráldica y vectores a medida", "Plantilla imprenta alta fidelidad", "Firma digital y formato editable"],
+  },
+  {
+    nombre: "Rediseño Premium con Acabado Físico",
+    subtitulo: "Caligráfico Clásico",
+    miles: "55",
+    detalle: "Diseño personalizado + Selección de tipografía caligráfica clásica + Archivo optimizado listo para imprenta.",
+    caracteristicas: ["Tipografía caligráfica clásica", "Diseño personalizado exclusivo", "Archivo optimizado para imprenta"],
+    popular: true,
+  },
+  {
+    nombre: "Plantilla Base Estándar",
+    subtitulo: "Estructura Preexistente (Señuelo)",
+    miles: "48",
+    detalle: "Modificación de datos sobre estructura preexistente estándar.",
+    caracteristicas: ["Modificación de datos y nombres", "Estructura preestablecida", "Exportación lista para imprimir"],
+  },
+];
+
+function PrecioTipografico({ miles }: { miles: string }) {
+  return (
+    <span className="font-serif text-3xl font-bold tracking-tight text-[#222222] inline-flex items-baseline">
+      {miles}
+      <sup className="text-[0.48em] font-semibold text-[#222222] ml-0.5 relative -top-2">000</sup>
+    </span>
+  );
+}
 
 function Inicio() {
-  const [tecnica, setTecnica] = useState<"oleo" | "acuarela">("oleo");
+  const [tecnica, setTecnica] = useState<CategoriaTarifa>("oleo");
   const destacadas = piezas.slice(0, 3);
   const piezaAntesDespues = piezas.find((p) => p.antes) ?? piezas[0];
 
@@ -209,60 +335,83 @@ function Inicio() {
         </section>
       )}
 
-      {/* Sección de Medidas y Precios de @memoriaentrazos */}
+      {/* Sección de Tarifas y Catálogo Psicológico */}
       <section className="border-t border-stone-200/80 bg-[#FAF8F5] py-16">
         <div className="mx-auto max-w-6xl px-5">
           <div className="text-center max-w-2xl mx-auto">
-            <p className="text-xs font-semibold tracking-[0.2em] text-accent uppercase">Tarifas y Formatos</p>
-            <h2 className="font-serif text-3xl md:text-4xl text-stone-900 mt-2">
-              Medidas y Valores
+            <p className="text-xs font-semibold tracking-[0.2em] text-accent uppercase">Tarifas y Paquetes</p>
+            <h2 className="font-serif text-3xl md:text-4xl text-stone-900 mt-2 font-semibold">
+              Catálogo de Valores
             </h2>
-            <p className="mt-3 text-sm text-muted-foreground">
-              Precios transparentes en pesos chilenos. Cada obra es realizada 100% a mano con materiales de bellas artes de máxima permanencia.
+            <p className="mt-1.5 text-xs text-stone-500 font-medium tracking-wide uppercase">
+              Valores expresados en pesos chilenos
             </p>
 
-            {/* Selector de Técnica */}
-            <div className="mt-8 inline-flex rounded-lg border border-stone-300 bg-stone-100 p-1">
+            {/* Selector de Línea de Producto */}
+            <div className="mt-8 inline-flex flex-wrap justify-center gap-1 rounded-xl border border-stone-300/80 bg-stone-100 p-1.5">
               <button
                 type="button"
                 onClick={() => setTecnica("oleo")}
-                className={`rounded-md px-5 py-2 text-xs md:text-sm font-semibold transition-all ${
+                className={`rounded-lg px-4 py-2 text-xs md:text-sm font-semibold transition-all ${
                   tecnica === "oleo"
                     ? "bg-stone-900 text-white shadow-sm"
-                    : "text-stone-700 hover:text-stone-950"
+                    : "text-stone-700 hover:text-stone-950 hover:bg-stone-200/60"
                 }`}
               >
-                Retratos en Óleo
+                Retratos al Óleo
               </button>
               <button
                 type="button"
                 onClick={() => setTecnica("acuarela")}
-                className={`rounded-md px-5 py-2 text-xs md:text-sm font-semibold transition-all ${
+                className={`rounded-lg px-4 py-2 text-xs md:text-sm font-semibold transition-all ${
                   tecnica === "acuarela"
                     ? "bg-stone-900 text-white shadow-sm"
-                    : "text-stone-700 hover:text-stone-950"
+                    : "text-stone-700 hover:text-stone-950 hover:bg-stone-200/60"
                 }`}
               >
                 Retratos en Acuarela
+              </button>
+              <button
+                type="button"
+                onClick={() => setTecnica("digital")}
+                className={`rounded-lg px-4 py-2 text-xs md:text-sm font-semibold transition-all ${
+                  tecnica === "digital"
+                    ? "bg-stone-900 text-white shadow-sm"
+                    : "text-stone-700 hover:text-stone-950 hover:bg-stone-200/60"
+                }`}
+              >
+                Retratos Digitales
+              </button>
+              <button
+                type="button"
+                onClick={() => setTecnica("certificados")}
+                className={`rounded-lg px-4 py-2 text-xs md:text-sm font-semibold transition-all ${
+                  tecnica === "certificados"
+                    ? "bg-stone-900 text-white shadow-sm"
+                    : "text-stone-700 hover:text-stone-950 hover:bg-stone-200/60"
+                }`}
+              >
+                Certificados y Diplomas
               </button>
             </div>
           </div>
 
           {/* Ficha descriptiva de la técnica seleccionada */}
           <div className="mt-8 mx-auto max-w-3xl rounded-xl border border-stone-200 bg-white p-5 shadow-xs text-sm">
-            {tecnica === "oleo" ? (
+            {tecnica === "oleo" && (
               <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                 <div>
                   <p className="font-serif font-bold text-base text-stone-900">Óleo sobre tela montada en bastidor</p>
                   <p className="text-xs text-muted-foreground mt-1 leading-relaxed">
-                    Gran durabilidad, profundidad cromática y textura cremosa y matérica que deja suaves relieves sobre el lienzo.
+                    Gran durabilidad, profundidad cromática y textura cremosa y matéricamente rica que deja suaves relieves sobre el lienzo.
                   </p>
                 </div>
-                <span className="shrink-0 rounded-full bg-[#F3ECE4] px-3 py-1 text-xs font-semibold text-stone-900">
+                <span className="shrink-0 rounded-full bg-[#F3ECE4] px-3.5 py-1 text-xs font-semibold text-stone-900">
                   Bastidor de madera incluido
                 </span>
               </div>
-            ) : (
+            )}
+            {tecnica === "acuarela" && (
               <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                 <div>
                   <p className="font-serif font-bold text-base text-stone-900">Acuarela sobre papel Canson de 300 g</p>
@@ -270,56 +419,134 @@ function Inicio() {
                     Papel grueso de alta calidad. Colores suaves, transparentes y luminosos que crean retratos delicados y llenos de vida.
                   </p>
                 </div>
-                <span className="shrink-0 inline-flex items-center gap-1.5 rounded-full bg-emerald-50 border border-emerald-200 px-3 py-1 text-xs font-semibold text-emerald-800">
+                <span className="shrink-0 inline-flex items-center gap-1.5 rounded-full bg-emerald-50 border border-emerald-200 px-3.5 py-1 text-xs font-semibold text-emerald-800">
                   <Gift className="h-3.5 w-3.5" /> Incluye marco de regalo
+                </span>
+              </div>
+            )}
+            {tecnica === "digital" && (
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                <div>
+                  <p className="font-serif font-bold text-base text-stone-900">Pintura Digital Artística</p>
+                  <p className="text-xs text-muted-foreground mt-1 leading-relaxed">
+                    Pintado digital a mano alzada. Archivo máster en máxima resolución listo para gigantografías, cuadros o uso en redes.
+                  </p>
+                </div>
+                <span className="shrink-0 rounded-full bg-stone-900 px-3.5 py-1 text-xs font-semibold text-white">
+                  Cero costo de envío • Entrega digital
+                </span>
+              </div>
+            )}
+            {tecnica === "certificados" && (
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                <div>
+                  <p className="font-serif font-bold text-base text-stone-900">Certificados, Diplomas y Caligrafía</p>
+                  <p className="text-xs text-muted-foreground mt-1 leading-relaxed">
+                    Diseños heráldicos y tipográficos de honor para instituciones, premiaciones corporativas o diplomas familiares.
+                  </p>
+                </div>
+                <span className="shrink-0 rounded-full bg-[#F3ECE4] px-3.5 py-1 text-xs font-semibold text-stone-900">
+                  Vectores listos para imprenta
                 </span>
               </div>
             )}
           </div>
 
-          {/* Tarjetas de Medidas y Precios */}
-          <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
-            {(tecnica === "oleo" ? preciosOleo : preciosAcuarela).map((item) => (
-              <div
-                key={item.medida}
-                className={`relative rounded-xl border bg-white p-5 shadow-xs flex flex-col justify-between transition-all hover:shadow-md hover:-translate-y-0.5 ${
-                  item.popular ? "border-stone-900 ring-2 ring-stone-900/10" : "border-stone-200"
-                }`}
-              >
-                {item.popular && (
-                  <span className="absolute -top-2.5 right-4 rounded-full bg-stone-900 px-2.5 py-0.5 text-[10px] font-bold text-white uppercase tracking-wider">
-                    Más pedido
-                  </span>
-                )}
-                <div>
-                  <p className="text-xs font-semibold text-stone-500 uppercase tracking-wider">Formato</p>
-                  <p className="font-serif text-2xl font-bold text-stone-900 mt-1">{item.medida}</p>
-                  <p className="font-serif text-2xl font-bold text-accent mt-3">{item.precio}</p>
-                  <div className="my-3 border-t border-stone-100" />
-                  <p className="text-xs leading-relaxed text-muted-foreground">{item.detalle}</p>
-                </div>
+          {/* Grilla de Tarjetas con Orden Inverso (Mayor a Menor) */}
+          <div
+            className={`mt-8 grid gap-5 ${
+              tecnica === "oleo"
+                ? "sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5"
+                : tecnica === "acuarela"
+                ? "sm:grid-cols-2 lg:grid-cols-4"
+                : "sm:grid-cols-2 md:grid-cols-3 max-w-5xl mx-auto"
+            }`}
+          >
+            {(tecnica === "oleo"
+              ? preciosOleo
+              : tecnica === "acuarela"
+              ? preciosAcuarela
+              : tecnica === "digital"
+              ? preciosDigital
+              : preciosCertificados
+            ).map((item) => {
+              const esPopular = item.popular;
+              return (
+                <div
+                  key={item.nombre}
+                  className={`relative rounded-xl bg-white p-5 flex flex-col justify-between transition-all duration-200 hover:-translate-y-1 ${
+                    esPopular
+                      ? "border-2 border-[#C5A059] shadow-md ring-4 ring-[#C5A059]/15"
+                      : "border border-stone-200 shadow-xs hover:border-stone-300 hover:shadow-md"
+                  }`}
+                >
+                  {esPopular && (
+                    <span className="absolute -top-3 right-4 rounded-full bg-[#C5A059] px-3 py-0.5 text-[10px] font-bold text-white uppercase tracking-wider shadow-xs">
+                      Más pedido
+                    </span>
+                  )}
+                  <div>
+                    {item.subtitulo && (
+                      <p className="text-[11px] font-semibold text-stone-500 uppercase tracking-wider">
+                        {item.subtitulo}
+                      </p>
+                    )}
+                    <p className="font-serif text-xl font-bold text-stone-900 mt-1 leading-snug">
+                      {item.nombre}
+                    </p>
 
-                <div className="mt-5 pt-3 border-t border-stone-100">
-                  <Link
-                    to="/encargar"
-                    className="block w-full rounded-md bg-stone-100 py-2 text-center text-xs font-semibold text-stone-900 transition-colors hover:bg-stone-900 hover:text-white"
-                  >
-                    Encargar este tamaño
-                  </Link>
+                    <div className="mt-3 flex items-baseline">
+                      <PrecioTipografico miles={item.miles} />
+                    </div>
+
+                    <div className="my-3 border-t border-stone-100" />
+                    <p className="text-xs leading-relaxed text-muted-foreground">{item.detalle}</p>
+
+                    {item.caracteristicas && (
+                      <ul className="mt-3.5 space-y-1.5 border-t border-stone-100 pt-3 text-xs text-stone-600">
+                        {item.caracteristicas.map((car, idx) => (
+                          <li key={`${item.nombre}-${idx}`} className="flex items-start gap-1.5">
+                            <Check className="h-3.5 w-3.5 text-[#C5A059] shrink-0 mt-0.5" />
+                            <span>{car}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+
+                  <div className="mt-6 pt-3 border-t border-stone-100">
+                    <Link
+                      to="/encargar"
+                      className={`block w-full rounded-md py-2.5 text-center text-xs font-semibold transition-all ${
+                        esPopular
+                          ? "bg-[#C5A059] text-white shadow-xs hover:bg-[#b08e4c]"
+                          : "bg-stone-100 text-stone-900 hover:bg-stone-900 hover:text-white"
+                      }`}
+                    >
+                      Encargar esta opción
+                    </Link>
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
           {/* Notas y Condiciones Importantes */}
           <div className="mt-10 mx-auto max-w-4xl rounded-xl border border-stone-200/80 bg-white p-5 text-xs text-stone-700 space-y-2 sm:space-y-0 sm:flex sm:items-center sm:justify-between sm:gap-6">
             <div className="flex items-center gap-2">
-              <Sparkles className="h-4 w-4 text-accent shrink-0" />
-              <span><strong>Figura adicional:</strong> Cada retrato contempla 1 figura (persona o mascota). Cada figura extra: <strong>+$15.000 CLP</strong>.</span>
+              <Sparkles className="h-4 w-4 text-[#C5A059] shrink-0" />
+              <span>
+                <strong>Figura adicional:</strong> Cada retrato contempla 1 figura (persona o mascota). Cada figura extra:{" "}
+                <span className="font-serif font-bold text-stone-900 inline-flex items-baseline">
+                  15<sup className="text-[0.55em] font-semibold ml-0.5">000</sup>
+                </span>.
+              </span>
             </div>
             <div className="flex items-center gap-2">
-              <Frame className="h-4 w-4 text-accent shrink-0" />
-              <span><strong>Formatos especiales:</strong> Disponible en formato cuadrado, rectangular o redondo. Medidas personalizadas a pedido.</span>
+              <Frame className="h-4 w-4 text-[#C5A059] shrink-0" />
+              <span>
+                <strong>Formatos especiales:</strong> Medidas personalizadas a pedido • Bastidor redondo o cuadrado disponible.
+              </span>
             </div>
           </div>
         </div>
