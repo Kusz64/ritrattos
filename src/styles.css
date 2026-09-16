@@ -130,12 +130,19 @@
     border-color: var(--color-border);
   }
 
+  html {
+    font-size: 18px; /* Incremento de 2 puntos tipográficos base (16px -> 18px / 12pt -> 14pt) */
+    -webkit-font-smoothing: antialiased;
+  }
+
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
     background-image: radial-gradient(rgba(40, 30, 20, 0.045) 1px, transparent 1px);
     background-size: 20px 20px;
+    font-size: 1rem;
+    line-height: 1.7;
   }
 
   h1,

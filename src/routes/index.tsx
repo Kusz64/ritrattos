@@ -293,15 +293,16 @@ function Inicio() {
       {/* Hero Principal */}
       <section className="mx-auto grid max-w-6xl items-center gap-10 px-5 py-14 md:grid-cols-2 md:py-20">
         <div>
-          <p className="mb-4 text-xs font-semibold tracking-[0.2em] text-accent uppercase">
-            Retratos hechos a mano en Chile
-          </p>
-          <h1 className="font-serif text-4xl leading-tight md:text-5xl lg:text-6xl text-stone-900">
+          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-[#DDD5C7] bg-[#F3ECE4]/80 px-3.5 py-1 text-xs font-semibold tracking-[0.2em] text-[#8B6822] uppercase">
+            <span>Estudio Ritrattos</span>
+            <span className="text-stone-400">·</span>
+            <span className="text-stone-600 font-medium">Arte al óleo en Chile</span>
+          </div>
+          <h1 className="font-serif text-4xl leading-[1.12] md:text-5xl lg:text-[3.5rem] font-bold text-stone-900">
             Un retrato guarda lo que una foto no alcanza a decir
           </h1>
-          <p className="mt-5 max-w-prose text-base leading-relaxed text-muted-foreground">
-            Pintamos al óleo a las personas y mascotas que marcaron tu vida. Envías una foto desde tu teléfono
-            y nosotros la convertimos en una obra de arte para colgar, heredar y recordar por siempre.
+          <p className="mt-5 max-w-prose text-lg leading-relaxed text-stone-600">
+            En <strong className="font-semibold text-stone-900">Ritrattos</strong> pintamos al óleo a las personas y mascotas que marcaron tu vida. Envías una foto desde tu teléfono y nosotros la convertimos en una obra de arte única para colgar, heredar y recordar por siempre.
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-4">
             <Link

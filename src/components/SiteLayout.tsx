@@ -16,7 +16,10 @@ export function SiteLayout({ children }: { children: ReactNode }) {
     <div className="flex min-h-screen flex-col bg-background text-foreground">
       <header className="sticky top-0 z-40 border-b border-[#DDD5C7] bg-[#F3ECE4]/95 backdrop-blur-md shadow-[0_2px_4px_rgba(0,0,0,0.03)]">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
-          <Link to="/" className="font-serif text-2xl font-bold tracking-wider text-stone-900">
+          <Link
+            to="/"
+            className="font-serif text-3xl md:text-[2.15rem] font-bold tracking-wide text-stone-950 transition-colors hover:text-stone-700"
+          >
             Ritrattos
           </Link>
 
@@ -80,7 +83,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
       <footer className="mt-24 border-t border-stone-800 bg-stone-950 text-stone-100">
         <div className="mx-auto grid max-w-6xl gap-10 px-5 py-14 text-sm sm:grid-cols-3">
           <div>
-            <p className="font-serif text-2xl tracking-wide text-white">
+            <p className="font-serif text-3xl font-bold tracking-wide text-white">
               Ritrattos
             </p>
             <p className="mt-3 leading-relaxed text-stone-400">
