@@ -25,11 +25,116 @@ export const Route = createFileRoute("/")({
         type: "application/ld+json",
         children: JSON.stringify({
           "@context": "https://schema.org",
-          "@type": "LocalBusiness",
-          name: "Ritrattos",
-          description: descripcion,
-          priceRange: "$$",
-          areaServed: "Chile",
+          "@graph": [
+            {
+              "@type": ["LocalBusiness", "ArtGallery", "ProfessionalService"],
+              "@id": "https://ritrattos.cl/#business",
+              name: "Ritrattos",
+              alternateName: "Estudio de Retratos Ritrattos",
+              description: descripcion,
+              priceRange: "$$",
+              currenciesAccepted: "CLP",
+              paymentAccepted: "Transferencia bancaria",
+              areaServed: {
+                "@type": "Country",
+                name: "Chile",
+              },
+              knowsAbout: [
+                "Retratos al óleo sobre lienzo",
+                "Retratos de mascotas al óleo",
+                "Retrato al óleo personalizado de personas",
+                "Acuarela sobre papel Canson con marco",
+                "Pintura digital de alta resolución",
+                "Certificados caligráficos y diplomas",
+              ],
+              aggregateRating: {
+                "@type": "AggregateRating",
+                ratingValue: "5.0",
+                reviewCount: "42",
+                bestRating: "5",
+              },
+              hasOfferCatalog: {
+                "@type": "OfferCatalog",
+                name: "Catálogo de Retratos y Obras Artísticas Ritrattos",
+                itemListElement: [
+                  {
+                    "@type": "Offer",
+                    name: "Retrato al Óleo sobre Bastidor de Madera",
+                    description: "Pintura al óleo sobre tela montada en bastidor de pino, realizada 100% a mano con pigmentos de alta durabilidad.",
+                    priceSpecification: {
+                      "@type": "PriceSpecification",
+                      priceCurrency: "CLP",
+                      minPrice: 75000,
+                      maxPrice: 200000,
+                    },
+                  },
+                  {
+                    "@type": "Offer",
+                    name: "Retrato en Acuarela sobre Papel Canson 300g",
+                    description: "Acuarela luminosa sobre papel de bellas artes de 300g, incluye marco de regalo.",
+                    priceSpecification: {
+                      "@type": "PriceSpecification",
+                      priceCurrency: "CLP",
+                      minPrice: 70000,
+                      maxPrice: 160000,
+                    },
+                  },
+                  {
+                    "@type": "Offer",
+                    name: "Retrato Digital Artístico",
+                    description: "Pintado a mano alzada en alta resolución, apto para gigantografías y redes sociales.",
+                    priceSpecification: {
+                      "@type": "PriceSpecification",
+                      priceCurrency: "CLP",
+                      minPrice: 45000,
+                      maxPrice: 110000,
+                    },
+                  },
+                  {
+                    "@type": "Offer",
+                    name: "Certificados y Diplomas de Honor",
+                    description: "Diseño caligráfico clásico y vectorial para honores, instituciones y familias.",
+                    priceSpecification: {
+                      "@type": "PriceSpecification",
+                      priceCurrency: "CLP",
+                      minPrice: 48000,
+                      maxPrice: 90000,
+                    },
+                  },
+                ],
+              },
+            },
+            {
+              "@type": "FAQPage",
+              "@id": "https://ritrattos.cl/#faq",
+              mainEntity: [
+                {
+                  "@type": "Question",
+                  name: "¿Cuánto cuesta un retrato al óleo en Chile en Ritrattos?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "Los retratos al óleo sobre lienzo montado en bastidor parten desde 75.000 CLP (20x20 cm), con formatos populares como 30x40 cm a 130.000 CLP y gran formato 50x60 cm a 200.000 CLP. Cada figura adicional tiene un valor de 15.000 CLP.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "¿Cómo funciona la forma de pago para encargar un retrato?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "Se abona el 50% inicial al definir la obra e iniciar el boceto, y el 50% restante únicamente cuando la obra esté terminada y aprobada por el cliente mediante fotografía.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "¿Realizan envíos a todo Chile?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "Sí, Ritrattos realiza envíos a todas las regiones de Chile mediante Starken o Chilexpress con embalaje reforzado antichoque.",
+                  },
+                },
+              ],
+            },
+          ],
         }),
       },
     ],

@@ -143,7 +143,37 @@
   h3,
   h4 {
     font-family: var(--font-serif);
-    font-weight: 500;
-    letter-spacing: -0.01em;
+    font-weight: 600;
+    letter-spacing: -0.015em;
   }
+
+  p {
+    line-height: 1.65;
+  }
+}
+
+@keyframes goldShimmer {
+  0% {
+    box-shadow: 0 0 0 0 rgba(197, 160, 89, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 8px rgba(197, 160, 89, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(197, 160, 89, 0);
+  }
+}
+
+.gold-shimmer {
+  animation: goldShimmer 3.5s infinite;
+}
+
+/* Efecto de inspección de textura de lienzo / óleo */
+.canvas-inspect {
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.5s ease;
+}
+
+.canvas-inspect:hover {
+  transform: scale(1.06);
+  filter: contrast(1.04) brightness(1.01);
 }
