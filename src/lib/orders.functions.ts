@@ -40,6 +40,7 @@ const pedidoSchema = z.object({
   style: z.enum(["oleo", "acuarela", "digital", "certificado"]),
   size: z.string().trim().min(1).max(60),
   message: z.string().trim().max(1500).optional().or(z.literal("")),
+  website: z.string().max(100).optional().or(z.literal("")),
   photoPaths: z.array(z.string().trim().min(1).max(300)).min(1, "Sube al menos una foto").max(8),
   consent: z.literal(true),
 });
@@ -47,6 +48,12 @@ const pedidoSchema = z.object({
 export const crearPedido = createServerFn({ method: "POST" })
   .inputValidator((data: unknown) => pedidoSchema.parse(data))
   .handler(async ({ data }) => {
+    // Protección Honeypot Anti-Spam (descarte silencioso)
+    if (data.website && data.website.trim().length > 0) {
+      console.log("[SPAM BOT DETECTADO] Solicitud descartada por honeypot");
+      return { id: "spam-prevented" };
+    }
+
     if (!process.env["SUPABASE_SERVICE_ROLE_KEY"]) {
       console.log("[LOCAL DEV] Pedido recibido en desarrollo local:", data);
       return { id: `local-dev-${Date.now()}` };

@@ -3,9 +3,11 @@ import { useServerFn } from "@tanstack/react-start";
 import { useRef, useState } from "react";
 import { toast } from "sonner";
 import { z } from "zod";
+import { Check } from "lucide-react";
 import { SiteLayout } from "@/components/SiteLayout";
 import { supabase } from "@/integrations/supabase/client";
 import { crearPedido, crearUrlDeSubida } from "@/lib/orders.functions";
+import heroEstudio from "@/assets/hero-estudio.jpg";
 
 const titulo = "Encargar un retrato personalizado | Ritrattos";
 const descripcion =
@@ -39,6 +41,7 @@ const formSchema = z.object({
   style: z.enum(["oleo", "acuarela", "digital", "certificado"]),
   size: z.string().trim().min(1),
   message: z.string().trim().max(1500),
+  website: z.string().max(100).optional(),
 });
 
 export const Route = createFileRoute("/encargar")({
@@ -49,7 +52,9 @@ export const Route = createFileRoute("/encargar")({
       { property: "og:title", content: titulo },
       { property: "og:description", content: descripcion },
       { property: "og:type", content: "website" },
+      { property: "og:image", content: heroEstudio },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: heroEstudio },
     ],
   }),
   component: Encargar,
@@ -63,6 +68,7 @@ function Encargar() {
   const [consent, setConsent] = useState(false);
   const [enviando, setEnviando] = useState(false);
   const [listo, setListo] = useState(false);
+  const [nombreCliente, setNombreCliente] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
 
   const agregarFotos = (files: FileList | null) => {
@@ -102,6 +108,13 @@ function Encargar() {
       message: fd.get("message") ?? "",
     });
 
+    const website = fd.get("website") as string | null;
+    if (website && website.trim().length > 0) {
+      // Honeypot: descarta el envío de bots de spam silenciosamente
+      setListo(true);
+      return;
+    }
+
     if (!parsed.success) {
       toast.error(parsed.error.issues[0]?.message ?? "Revisa los datos del formulario.");
       return;
@@ -135,9 +148,10 @@ function Encargar() {
         data: { ...parsed.data, photoPaths: paths, consent: true },
       });
 
+      setNombreCliente(parsed.data.fullName);
       setListo(true);
       setFotos([]);
-      toast.success("¡Pedido recibido! Te escribimos a tu correo.");
+      toast.success("¡Solicitud recibida! Te contactaremos a la brevedad.");
     } catch (err) {
       console.error(err);
       toast.error(err instanceof Error ? err.message : "No pudimos enviar el pedido.");
@@ -149,18 +163,46 @@ function Encargar() {
   if (listo) {
     return (
       <SiteLayout>
-        <div className="mx-auto max-w-2xl px-5 py-24 text-center">
-          <h1 className="font-serif text-4xl">Gracias, recibimos tu pedido</h1>
-          <p className="mt-4 text-muted-foreground">
-            Revisaremos tus fotos y te responderemos por correo dentro de las próximas 24 horas
-            hábiles con el presupuesto y los pasos a seguir.
+        <div className="mx-auto max-w-2xl px-5 py-20 text-center">
+          <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-emerald-100 text-emerald-700">
+            <Check className="h-8 w-8" />
+          </div>
+          <h1 className="font-serif text-3xl sm:text-4xl font-bold text-stone-900">
+            ¡Recibimos tu solicitud con éxito!
+          </h1>
+          <p className="mt-4 text-base sm:text-lg text-stone-600 leading-relaxed">
+            Revisaremos tus fotos y te contactaremos por WhatsApp o correo electrónico para confirmar
+            los detalles del encuadre, la técnica y coordinar el boceto inicial.
           </p>
-          <Link
-            to="/portafolio"
-            className="mt-8 inline-block rounded-md bg-primary px-6 py-3 text-primary-foreground"
-          >
-            Ver el portafolio
-          </Link>
+
+          <div className="mt-8 rounded-xl border border-stone-200 bg-[#F9F7F4] p-6 text-left">
+            <h3 className="font-serif font-bold text-stone-900 text-lg">¿Quieres agilizar la revisión?</h3>
+            <p className="text-sm text-stone-600 mt-1 leading-relaxed">
+              Puedes escribirnos directamente a nuestro WhatsApp oficial para avisarnos de tu solicitud o hacernos cualquier pregunta previa.
+            </p>
+            <a
+              href={`https://wa.me/56966885084?text=${encodeURIComponent(
+                `Hola Ritrattos, acabo de enviar mi solicitud desde la página web a nombre de ${nombreCliente || "un cliente"}. Quisiera confirmar si la recibieron bien.`
+              )}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-4 inline-flex items-center gap-2 rounded-lg bg-[#25D366] px-5 py-3 text-sm font-semibold text-white shadow-sm hover:bg-[#20bd5a] transition-all"
+            >
+              <svg className="h-5 w-5 fill-current" viewBox="0 0 24 24">
+                <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z" />
+              </svg>
+              Avisar por WhatsApp (+56 9 6688 5084)
+            </a>
+          </div>
+
+          <div className="mt-8 flex justify-center gap-4">
+            <Link
+              to="/portafolio"
+              className="rounded-md border border-stone-300 bg-white px-6 py-3 text-sm font-semibold text-stone-800 shadow-xs hover:bg-stone-50"
+            >
+              Ver más trabajos en el Portafolio
+            </Link>
+          </div>
         </div>
       </SiteLayout>
     );
@@ -303,6 +345,18 @@ function Encargar() {
                 permiso de las personas que aparecen en ellas.
               </span>
             </label>
+          </div>
+
+          {/* Campo Honeypot anti-spam (invisible para personas, detecta bots) */}
+          <div className="hidden" aria-hidden="true">
+            <label htmlFor="website">Website</label>
+            <input
+              id="website"
+              name="website"
+              type="text"
+              tabIndex={-1}
+              autoComplete="off"
+            />
           </div>
 
           <button

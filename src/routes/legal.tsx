@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/SiteLayout";
+import heroEstudio from "@/assets/hero-estudio.jpg";
 
 const titulo = "Términos y Política de Privacidad | Ritrattos";
 const descripcion =
@@ -13,7 +14,9 @@ export const Route = createFileRoute("/legal")({
       { property: "og:title", content: titulo },
       { property: "og:description", content: descripcion },
       { property: "og:type", content: "website" },
+      { property: "og:image", content: heroEstudio },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: heroEstudio },
       { name: "robots", content: "index,follow" },
     ],
   }),

@@ -3,6 +3,7 @@ import { z } from "zod";
 import { SiteLayout } from "@/components/SiteLayout";
 import { AntesDespues } from "@/components/AntesDespues";
 import { categorias, piezas } from "@/data/portfolio";
+import heroEstudio from "@/assets/hero-estudio.jpg";
 
 const titulo = "Portafolio de retratos al óleo y digitales | Ritrattos";
 const descripcion =
@@ -24,7 +25,9 @@ export const Route = createFileRoute("/portafolio")({
       { property: "og:title", content: titulo },
       { property: "og:description", content: descripcion },
       { property: "og:type", content: "website" },
+      { property: "og:image", content: heroEstudio },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: heroEstudio },
     ],
   }),
   component: Portafolio,

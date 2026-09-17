@@ -18,7 +18,9 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: titulo },
       { property: "og:description", content: descripcion },
       { property: "og:type", content: "website" },
+      { property: "og:image", content: heroEstudio },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: heroEstudio },
     ],
     scripts: [
       {
@@ -48,12 +50,6 @@ export const Route = createFileRoute("/")({
                 "Pintura digital de alta resolución",
                 "Certificados caligráficos y diplomas",
               ],
-              aggregateRating: {
-                "@type": "AggregateRating",
-                ratingValue: "5.0",
-                reviewCount: "42",
-                bestRating: "5",
-              },
               hasOfferCatalog: {
                 "@type": "OfferCatalog",
                 name: "Catálogo de Retratos y Obras Artísticas Ritrattos",

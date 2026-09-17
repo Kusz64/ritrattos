@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/SiteLayout";
+import heroEstudio from "@/assets/hero-estudio.jpg";
 
 const titulo = "Cómo encargar tu retrato: proceso y tiempos | Ritrattos";
 const descripcion =
@@ -37,7 +38,9 @@ export const Route = createFileRoute("/proceso")({
       { property: "og:title", content: titulo },
       { property: "og:description", content: descripcion },
       { property: "og:type", content: "website" },
+      { property: "og:image", content: heroEstudio },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: heroEstudio },
     ],
   }),
   component: Proceso,
