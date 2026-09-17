@@ -111,7 +111,16 @@ export function SiteLayout({ children }: { children: ReactNode }) {
             <p className="leading-relaxed">
               Consultas y pedidos mediante nuestro formulario de encargo con atención personalizada.
             </p>
-            <p className="text-stone-300 font-medium">Envíos a todo Chile con embalaje de protección especial.</p>
+            <a
+              href="https://wa.me/56966885084?text=Hola%20Ritrattos,%20quiero%20hacer%20una%20consulta%20sobre%20un%20retrato%20personalizado"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-stone-200 hover:text-emerald-400 transition-colors font-medium text-sm"
+            >
+              <span className="inline-block h-2 w-2 rounded-full bg-[#25D366]" />
+              WhatsApp: +56 9 6688 5084
+            </a>
+            <p className="text-stone-300 font-medium text-xs">Envíos a todo Chile con embalaje de protección especial.</p>
           </div>
         </div>
         <div className="border-t border-stone-900 px-5 py-5 text-center text-xs text-stone-400">
@@ -121,7 +130,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
 
       {/* Botón Flotante de WhatsApp para consultas directas */}
       <a
-        href="https://wa.me/56900000000?text=Hola%20Ritrattos,%20quiero%20hacer%20una%20consulta%20sobre%20un%20retrato%20personalizado"
+        href="https://wa.me/56966885084?text=Hola%20Ritrattos,%20quiero%20hacer%20una%20consulta%20sobre%20un%20retrato%20personalizado"
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Hablar por WhatsApp con Ritrattos"

@@ -32,6 +32,7 @@ export const Route = createFileRoute("/")({
               name: "Ritrattos",
               alternateName: "Estudio de Retratos Ritrattos",
               description: descripcion,
+              telephone: "+56966885084",
               priceRange: "$$",
               currenciesAccepted: "CLP",
               paymentAccepted: "Transferencia bancaria",
@@ -751,6 +752,15 @@ function Inicio() {
             >
               Subir Foto y Cotizar
             </Link>
+            <a
+              href="https://wa.me/56966885084?text=Hola%20Ritrattos,%20tengo%20una%20duda%20con%20mi%20foto%20para%20un%20retrato"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2.5 rounded-md border border-stone-300 bg-white px-6 py-3.5 text-sm font-semibold text-stone-800 shadow-xs transition-all hover:bg-stone-50"
+            >
+              <span className="inline-block h-2 w-2 rounded-full bg-[#25D366]" />
+              Consultar por WhatsApp
+            </a>
           </div>
         </div>
       </section>
