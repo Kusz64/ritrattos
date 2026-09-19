@@ -28,12 +28,12 @@ export function SiteLayout({ children }: { children: ReactNode }) {
             </span>
           </Link>
 
-          {/* Escudo histórico centrado — no altera el flujo ni el espaciado */}
-          <div className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 hidden md:block">
+          {/* Escudo histórico centrado — visible en móvil y escritorio sin alterar espaciado */}
+          <div className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center">
             <img
               src="/escudo-cabecera.png"
               alt="Escudo de Bellas Artes"
-              className="h-11 w-auto object-contain opacity-75 drop-shadow-[0_1px_2px_rgba(0,0,0,0.06)]"
+              className="h-10 sm:h-12 w-auto object-contain opacity-85"
             />
           </div>
 
