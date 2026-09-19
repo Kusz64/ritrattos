@@ -731,6 +731,27 @@ function Inicio() {
         </div>
       </section>
 
+      {/* Eslogan — cierre emocional antes del CTA */}
+      <section className="py-14">
+        <div className="mx-auto max-w-3xl text-center">
+          <div className="flex items-center justify-center gap-4 mb-6">
+            <span className="block h-px w-12 bg-[#C5A059]/40" />
+            <span className="text-[#C5A059] text-lg">✦</span>
+            <span className="block h-px w-12 bg-[#C5A059]/40" />
+          </div>
+          <p className="font-serif text-2xl md:text-3xl italic leading-snug text-stone-700">
+            Amor eterno sobre lienzo,
+            <br />
+            <span className="text-[#C5A059]">Memorias en óleo inmortal.</span>
+          </p>
+          <div className="flex items-center justify-center gap-4 mt-6">
+            <span className="block h-px w-12 bg-[#C5A059]/40" />
+            <span className="text-[#C5A059] text-lg">✦</span>
+            <span className="block h-px w-12 bg-[#C5A059]/40" />
+          </div>
+        </div>
+      </section>
+
       {/* Banner de Contacto y Asesoría */}
       <section className="mx-auto max-w-6xl px-5 py-16">
         <div className="rounded-2xl border border-stone-300 bg-[#F3ECE4] p-8 md:p-12 text-center">

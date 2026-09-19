@@ -128,6 +128,16 @@ export function SiteLayout({ children }: { children: ReactNode }) {
             <p className="text-stone-300 font-medium text-xs">Envíos a todo Chile con embalaje de protección especial.</p>
           </div>
         </div>
+        <div className="flex flex-col items-center gap-3 py-8">
+          <img
+            src="/bellas-artes-escudo.jpg"
+            alt="Escudo Bellas Artes — Concepto Fundacional"
+            className="h-20 w-auto opacity-50 mix-blend-lighten"
+          />
+          <p className="font-serif text-[0.7rem] italic tracking-widest text-stone-500 uppercase">
+            Tradición en Bellas Artes desde el Siglo XVIII
+          </p>
+        </div>
         <div className="border-t border-stone-900 px-5 py-5 text-center text-xs text-stone-400">
           © {new Date().getFullYear()} Ritrattos. Todos los derechos reservados.
         </div>
