@@ -299,7 +299,7 @@ function Inicio() {
             Un retrato guarda lo que una foto no alcanza a decir
           </h1>
           <p className="mt-5 max-w-prose text-lg leading-relaxed text-stone-600">
-            En <strong className="font-semibold text-stone-900">Ritrattos</strong> pintamos al óleo a las personas y mascotas que marcaron tu vida. Envías una foto desde tu teléfono y nosotros la convertimos en una obra de arte única para colgar, heredar y recordar por siempre.
+            Esa foto que guardas con cariño puede convertirse en un óleo para colgar, heredar y recordar por siempre. ¿Qué rostro querido merece dejar de vivir solo en una pantalla?
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-4">
             <Link

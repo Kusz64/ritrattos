@@ -18,9 +18,14 @@ export function SiteLayout({ children }: { children: ReactNode }) {
         <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
           <Link
             to="/"
-            className="font-serif text-3xl md:text-[2.15rem] font-bold tracking-wide text-stone-950 transition-colors hover:text-stone-700"
+            className="flex items-baseline gap-2 transition-colors hover:text-stone-700"
           >
-            Ritrattos
+            <span className="font-serif text-3xl md:text-[2.15rem] font-bold tracking-wide text-stone-950">
+              Ritrattos
+            </span>
+            <span className="hidden sm:inline font-serif text-[0.7rem] italic tracking-wider text-[#B8A080]">
+              desde 1944
+            </span>
           </Link>
 
           <nav className="hidden items-center gap-7 text-sm md:flex">
