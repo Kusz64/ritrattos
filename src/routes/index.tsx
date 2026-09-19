@@ -56,8 +56,8 @@ export const Route = createFileRoute("/")({
                 itemListElement: [
                   {
                     "@type": "Offer",
-                    name: "Retrato al Óleo sobre Bastidor de Madera",
-                    description: "Pintura al óleo sobre tela montada en bastidor de pino, realizada 100% a mano con pigmentos de alta durabilidad.",
+                    name: "Retrato al Óleo con Marco de Madera",
+                    description: "Pintura al óleo sobre tela con marco de madera (moldura) incluido, realizada 100% a mano con pigmentos de alta durabilidad.",
                     priceSpecification: {
                       "@type": "PriceSpecification",
                       priceCurrency: "CLP",
@@ -110,7 +110,7 @@ export const Route = createFileRoute("/")({
                   name: "¿Cuánto cuesta un retrato al óleo en Chile en Ritrattos?",
                   acceptedAnswer: {
                     "@type": "Answer",
-                    text: "Los retratos al óleo sobre lienzo montado en bastidor parten desde 75.000 CLP (20x20 cm), con formatos populares como 30x40 cm a 130.000 CLP y gran formato 50x60 cm a 200.000 CLP. Cada figura adicional tiene un valor de 15.000 CLP.",
+                    text: "Los retratos al óleo sobre lienzo con marco de madera incluido parten desde 75.000 CLP (20x20 cm), con formatos populares como 30x40 cm a 130.000 CLP y gran formato 50x60 cm a 200.000 CLP. Cada figura adicional tiene un valor de 15.000 CLP.",
                   },
                 },
                 {
@@ -156,14 +156,14 @@ const preciosOleo: ItemPrecio[] = [
     subtitulo: "Gran Formato (Ancla)",
     miles: "200",
     detalle: "Presencia escénica de gran impacto visual. Óleo con ricos empastes matéricos para salones y livings.",
-    caracteristicas: ["Lienzo de lino o algodón montado", "Bastidor reforzado de pino macizo", "Embalaje rígido de alta seguridad"],
+    caracteristicas: ["Lienzo de lino o algodón", "Marco de madera (moldura) incluido", "Embalaje rígido de alta seguridad"],
   },
   {
     nombre: "40 × 50 cm",
     subtitulo: "Formato Mediano Amplio",
     miles: "175",
     detalle: "Excelente para composiciones de 1 o 2 figuras con un altísimo grado de detalle en piel y pelaje.",
-    caracteristicas: ["Bastidor de madera incluido", "Revisiones de boceto previas", "Barniz de protección final"],
+    caracteristicas: ["Marco de madera incluido", "Revisiones de boceto previas", "Barniz de protección final"],
   },
   {
     nombre: "30 × 40 cm",
@@ -178,14 +178,14 @@ const preciosOleo: ItemPrecio[] = [
     subtitulo: "Formato Estándar",
     miles: "95",
     detalle: "Proporción vertical armónica, ideal para repisas, escritorios y dormitorios.",
-    caracteristicas: ["Montado en bastidor", "Textura al óleo sobre lienzo", "Listo para colgar"],
+    caracteristicas: ["Marco de madera incluido", "Textura al óleo sobre lienzo", "Listo para colgar"],
   },
   {
     nombre: "20 × 20 cm",
     subtitulo: "Formato Cuadrado",
     miles: "75",
     detalle: "Ideal para 1 rostro en primer plano o retrato íntimo de mascota.",
-    caracteristicas: ["Lienzo en bastidor", "Boceto de aprobación", "Listo para colgar"],
+    caracteristicas: ["Marco de madera incluido", "Boceto de aprobación", "Listo para colgar"],
   },
 ];
 
@@ -370,7 +370,7 @@ function Inicio() {
             <div>
               <h3 className="font-semibold text-sm text-stone-900">Listo para Colgar</h3>
               <p className="text-xs text-muted-foreground mt-1 leading-relaxed">
-                Montado en bastidor de madera maciza, listo para tu pared.
+                Con marco de madera (moldura) incluido, listo para tu pared.
               </p>
             </div>
           </div>
@@ -504,13 +504,13 @@ function Inicio() {
             {tecnica === "oleo" && (
               <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                 <div>
-                  <p className="font-serif font-bold text-base text-stone-900">Óleo sobre tela montada en bastidor</p>
+                  <p className="font-serif font-bold text-base text-stone-900">Óleo sobre tela con marco de madera</p>
                   <p className="text-xs text-muted-foreground mt-1 leading-relaxed">
                     Gran durabilidad, profundidad cromática y textura cremosa y matéricamente rica que deja suaves relieves sobre el lienzo.
                   </p>
                 </div>
                 <span className="shrink-0 rounded-full bg-[#F3ECE4] px-3.5 py-1 text-xs font-semibold text-stone-900">
-                  Bastidor de madera incluido
+                  Marco de madera incluido
                 </span>
               </div>
             )}
@@ -648,7 +648,7 @@ function Inicio() {
             <div className="flex items-center gap-2">
               <Frame className="h-4 w-4 text-[#C5A059] shrink-0" />
               <span>
-                <strong>Formatos especiales:</strong> Medidas personalizadas a pedido • Bastidor redondo o cuadrado disponible.
+                <strong>Formatos especiales:</strong> Medidas personalizadas a pedido • Marcos y molduras a medida disponibles.
               </span>
             </div>
           </div>

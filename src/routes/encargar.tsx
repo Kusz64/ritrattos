@@ -18,7 +18,7 @@ const MAX_MB = 20;
 const MAX_FOTOS = 8;
 
 const estilos = [
-  { valor: "oleo", etiqueta: "Óleo sobre lienzo (bastidor de madera)" },
+  { valor: "oleo", etiqueta: "Óleo sobre lienzo (marco de madera incluido)" },
   { valor: "acuarela", etiqueta: "Acuarela sobre papel Canson 300g (marco de regalo)" },
   { valor: "digital", etiqueta: "Pintura digital de alta resolución" },
   { valor: "certificado", etiqueta: "Certificado o diploma caligráfico" },

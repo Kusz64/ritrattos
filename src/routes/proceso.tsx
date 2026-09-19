@@ -65,7 +65,7 @@ const faqs = [
   {
     pregunta: "¿Cómo viene presentada la obra?",
     respuesta:
-      "Los retratos al óleo se entregan montados en bastidor de madera de pino, listos para colgar en tu pared. Los retratos en acuarela se realizan en papel de alta gama Canson 300 g e incluyen un marco de regalo.",
+      "Los retratos al óleo se entregan con marco de madera (moldura) incluido, listos para colgar en tu pared. Los retratos en acuarela se realizan en papel de alta gama Canson 300 g e incluyen un marco de regalo.",
   },
   {
     pregunta: "¿Hacen envíos a regiones de Chile?",

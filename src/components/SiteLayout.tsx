@@ -23,7 +23,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
             <span className="font-serif text-3xl md:text-[2.15rem] font-bold tracking-wide text-stone-950">
               Ritrattos
             </span>
-            <span className="hidden sm:inline font-serif text-[0.7rem] italic tracking-wider text-[#B8A080]">
+            <span className="font-serif text-xs sm:text-sm italic tracking-wider text-[#8B7355]">
               desde 1944
             </span>
           </Link>
@@ -128,13 +128,15 @@ export function SiteLayout({ children }: { children: ReactNode }) {
             <p className="text-stone-300 font-medium text-xs">Envíos a todo Chile con embalaje de protección especial.</p>
           </div>
         </div>
-        <div className="flex flex-col items-center gap-3 py-8">
-          <img
-            src="/bellas-artes-escudo.jpg"
-            alt="Escudo Bellas Artes — Concepto Fundacional"
-            className="h-20 w-auto opacity-50 mix-blend-lighten"
-          />
-          <p className="font-serif text-[0.7rem] italic tracking-widest text-stone-500 uppercase">
+        <div className="flex flex-col items-center gap-4 py-10">
+          <div className="flex flex-col items-center gap-1 border border-[#C5A059]/25 rounded-sm px-8 py-5">
+            <span className="text-[0.6rem] tracking-[0.35em] text-[#C5A059]/60 uppercase">✦ Concepto Fundacional ✦</span>
+            <span className="font-serif text-xl md:text-2xl tracking-[0.15em] text-[#C5A059]/80 font-light uppercase">
+              Bellas Artes
+            </span>
+            <span className="text-[0.55rem] tracking-[0.3em] text-stone-500 uppercase">Siglo XVIII</span>
+          </div>
+          <p className="font-serif text-[0.7rem] italic tracking-widest text-stone-500">
             Tradición en Bellas Artes desde el Siglo XVIII
           </p>
         </div>
