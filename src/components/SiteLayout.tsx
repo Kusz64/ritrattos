@@ -15,7 +15,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
   return (
     <div className="flex min-h-screen flex-col bg-background text-foreground">
       <header className="sticky top-0 z-40 border-b border-[#DDD5C7] bg-[#F3ECE4]/95 backdrop-blur-md shadow-[0_2px_4px_rgba(0,0,0,0.03)]">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
+        <div className="relative mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
           <Link
             to="/"
             className="flex items-baseline gap-2 transition-colors hover:text-stone-700"
@@ -27,6 +27,15 @@ export function SiteLayout({ children }: { children: ReactNode }) {
               desde 1944
             </span>
           </Link>
+
+          {/* Escudo histórico centrado — no altera el flujo ni el espaciado */}
+          <div className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 hidden md:block">
+            <img
+              src="/escudo-cabecera.png"
+              alt="Escudo de Bellas Artes"
+              className="h-11 w-auto object-contain opacity-75 drop-shadow-[0_1px_2px_rgba(0,0,0,0.06)]"
+            />
+          </div>
 
           <nav className="hidden items-center gap-7 text-sm md:flex">
             {enlaces.map((e) => (
